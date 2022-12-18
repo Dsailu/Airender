@@ -18,13 +18,32 @@ class App extends Component{
         }
     }
 
-    api = () => {
-        axios(API_URL)
-        .then( resp => {
-            console.log(resp.data.content);
-            this.setState({quote : resp.data.content});
-            return resp.data;
-        })
+    // api = () => {
+    //     axios(API_URL)
+    //     .then( resp => {
+    //         console.log(resp.data.content);
+    //         this.setState({quote : resp.data.content});
+    //         return resp.data;
+    //     })
+    // }
+    // api = async() => {
+    //     try{
+    //    const resp = await axios(API_URL);
+    //    return resp.data;
+    //     }catch(err){
+    //         console.log(err);
+    //     }
+
+    // }
+    api = async() => {
+        try{
+       const resp = await axios(API_URL);
+       const data = await resp.data.content;
+       this.setState({quote : data});
+        }catch(err){
+            console.log(err);
+        }
+  
     }
 
    hoverHandler = () => {
